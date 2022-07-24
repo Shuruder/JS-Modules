@@ -1,0 +1,101 @@
+O que são módulos?
+
+São arquivos JS que tem a capacidade de exportar e importar informações de outros arquivos do mesmo tipo
+
+ex:
+
+main.js usa modulos do counter.js e display.sj
+
+Vantagens:
+    Organização do código
+    compartilhamento de variaveis em escopos diferenbtes
+    explicita as dependencias dos arquivos
+
+
+Export:
+
+named exports: (um por vez)
+
+export function mostraIdade(pessoa) {
+    return 'A idade de ${pessoa.nome} é ${pessoa.idade}';
+}
+
+export function mostraCidade(pessoa) {
+    return 'A idade de ${pessoa.nome} é ${pessoa.cidade}';
+}
+
+export function mostraHobby(pessoa) {
+    return 'A idade de ${pessoa.nome} é ${pessoa.hobby}';
+}
+
+Ou pode declarar a function e depois fazer o export 
+
+export {
+    mostraIdade,
+    mostraCidade,
+    mostraHobby
+}
+
+default export:
+
+    Só pode haver um por arquivos
+    Será o retorno padrão do seu arquivo
+
+ function mostraIdade(pessoa) {
+    return 'A idade de ${pessoa.nome} é ${pessoa.idade}';
+}
+
+ function mostraCidade(pessoa) {
+    return 'A idade de ${pessoa.nome} é ${pessoa.cidade}';
+}
+
+ function mostraHobby(pessoa) {
+    return 'A idade de ${pessoa.nome} é ${pessoa.hobby}';
+}
+
+export {
+    mostraIdade,
+    mostraCidade
+}
+
+export default mostraHobby;
+
+
+Importar
+
+named export
+import {funcao, variavel, classe} from './arquivo.js'
+
+default export
+import valorDefault from './arquivo.js'
+
+Colocando apelidos:
+
+import {arquivo as Apelido} from './arquivo.js';
+
+Apelido.metodo();
+
+
+Importar tudo
+
+import * as INFOS from './arquivo.js'
+
+INFOS.metodoA();
+
+console.log(INFOS.variavel);
+
+
+Vinculando ao HTML
+
+<script type="module" src="./main.js"></script>
+
+Para fazer testes localmente, será necessário estar rodando um servidor. Isso pode ser feito usando Live Server
+
+
+Curiosidades
+
+    Modulos sempre em strict mode
+    Podem ser utilizadas as extensões .js e .mjs
+    localmente precisa de um servidor
+    sempre utilizar a extensões
+    sempre utilizar ./ na importação
